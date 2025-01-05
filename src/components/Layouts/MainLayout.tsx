@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 import DesktopPlaybackFooter from '../_mainLayout/DesktopPlaybackFooter';
 import Header from '../_mainLayout/Header';
 import LeftSidebar from '../_mainLayout/LeftSidebar';
