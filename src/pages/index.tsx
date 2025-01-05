@@ -1,9 +1,9 @@
-import SpotifyLayout from '@/components/Layouts/MainLayout'
+import MainLayout from '@/components/Layouts/MainLayout'
 import React from 'react'
 
 function index() {
   return (
-    <SpotifyLayout>
+    <MainLayout>
       {/* Hero Section */}
       <div className="space-y-6">
         {/* Recently Played Section */}
@@ -73,7 +73,7 @@ function index() {
           </div>
         </section>
       </div>
-    </SpotifyLayout>
+    </MainLayout>
   )
 }
 
