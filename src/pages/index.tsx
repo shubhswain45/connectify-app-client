@@ -8,6 +8,11 @@ interface PlaylistCard {
   imageUrl?: string;
 }
 
+interface SectionProps {
+  title: string;
+  items: PlaylistCard[];
+}
+
 // Mock data
 const makeForYouItems: PlaylistCard[] = Array.from({ length: 10 }, (_, i) => ({
   id: i,
@@ -81,9 +86,17 @@ const HomePage: React.FC = () => {
 
   // Card component
   const Card: React.FC<PlaylistCard> = ({ title, description }) => (
-    <div className="bg-gray-800/40 hover:bg-gray-800/60 transition-all p-4 rounded-lg cursor-pointer">
-      <div className="aspect-square bg-gray-700 mb-4 rounded-md" />
-      <h3 className="text-white font-semibold truncate">{title}</h3>
+    <div className="bg-gray-800/40 hover:bg-gray-800/60 transition-all p-4 rounded-lg cursor-pointer group">
+      <div className="aspect-square bg-gray-700 mb-4 rounded-md relative overflow-hidden">
+        <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute bottom-2 right-2 z-10">
+          <div className="bg-green-500 rounded-full p-3 shadow-lg">
+            <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <h3 className="text-white font-semibold text-base mb-1 truncate">{title}</h3>
       <p className="text-sm text-gray-400 truncate">{description}</p>
     </div>
   );
@@ -99,7 +112,7 @@ const HomePage: React.FC = () => {
               key={i}
               className="bg-gray-800/50 hover:bg-gray-800 transition-colors group flex items-center gap-4 rounded-md overflow-hidden cursor-pointer"
             >
-              <div className="w-20 h-20 bg-gray-700 flex-shrink-0" />
+              <div className="w-24 h-24 bg-gray-700 flex-shrink-0" />
               <span className="font-semibold text-white">Playlist {i + 1}</span>
             </div>
           ))}
@@ -120,14 +133,14 @@ const HomePage: React.FC = () => {
 
           <div 
             ref={scrollContainerRef}
-            className="flex overflow-x-auto gap-6 no-scrollbar"
+            className="flex overflow-x-auto gap-6 no-scrollbar pb-2"
             style={{ 
               scrollbarWidth: 'none',
               msOverflowStyle: 'none'
             }}
           >
             {makeForYouItems.map((item) => (
-              <div key={item.id} className="flex-none w-[140px] sm:w-[160px] md:w-[180px] lg:w-[200px]">
+              <div key={item.id} className="flex-none w-[160px] sm:w-[200px] md:w-[220px] lg:w-[240px]">
                 <Card {...item} />
               </div>
             ))}
@@ -138,7 +151,7 @@ const HomePage: React.FC = () => {
       {/* Recently Played */}
       <section className="pt-8">
         <h2 className="text-2xl font-bold text-white mb-4">Recently played</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
           {recentlyPlayedItems.map((item) => (
             <Card key={item.id} {...item} />
           ))}
@@ -148,7 +161,7 @@ const HomePage: React.FC = () => {
       {/* Your Top Mixes */}
       <section className="pt-8 pb-24">
         <h2 className="text-2xl font-bold text-white mb-4">Your top mixes</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
           {topMixesItems.map((item) => (
             <Card key={item.id} {...item} />
           ))}
@@ -165,7 +178,6 @@ const HomePage: React.FC = () => {
           scrollbar-width: none;
         }
       `}</style>
-
     </div>
   );
 };
