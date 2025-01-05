@@ -12,7 +12,7 @@ function MobileMiniPlayer() {
     return (
         <>
             <div
-                className="md:hidden fixed bottom-16 left-0 right-0 bg-gray-800 z-30 cursor-pointer"
+                className="md:hidden fixed bottom-16 left-0 right-0 bg-[#610000] z-30 cursor-pointer"
                 onClick={togglePlayer}
             >
                 <div className="flex items-center justify-between p-2 border-b border-gray-700">

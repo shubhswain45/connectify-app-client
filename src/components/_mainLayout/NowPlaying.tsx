@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import SvgIcon from '../../../public/svgs/SvgIcon'
 import Button from '../ui/Button'
+import Image from 'next/image'
 
 function NowPlaying({ isPlayerOpen, togglePlayer }: { isPlayerOpen: boolean, togglePlayer: () => void }) {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     return (
         <div
-            className={`fixed inset-0 bg-gradient-to-b from-gray-800 to-gray-900 z-50 transition-transform duration-500 ease-in-out ${isPlayerOpen ? 'translate-y-0' : 'translate-y-full'
+            className={`fixed inset-0 bg-[#610000] z-50 transition-transform duration-500 ease-in-out ${isPlayerOpen ? 'translate-y-0' : 'translate-y-full'
                 }`}
         >
             <div className="h-full overflow-y-auto">
@@ -26,10 +27,28 @@ function NowPlaying({ isPlayerOpen, togglePlayer }: { isPlayerOpen: boolean, tog
                     </div>
 
                     {/* Album Art */}
-                    <div className="aspect-square w-full max-w-[400px] mx-auto mb-6">
-                        <div className="w-full h-full bg-gray-800 rounded-md shadow-2xl"></div>
-                    </div>
+                    {/* <div className="aspect-square w-full max-w-[400px] mx-auto mb-6">
+                        <div className="w-full h-full bg-gray-800 rounded-md shadow-2xl">
+                            <Image
+                                src={"https://c.saavncdn.com/415/Satranga-From-ANIMAL-Hindi-2023-20231027131032-500x500.jpg"}
+                                width={ }
+                                height={ }
+                            />
+                        </div>
+                    </div> */}
 
+
+                    <div className="aspect-square w-full max-w-[400px] mx-auto mb-6">
+                        <div className="w-full h-full bg-gray-800 rounded-md shadow-2xl">
+                            <Image
+                                src="https://c.saavncdn.com/415/Satranga-From-ANIMAL-Hindi-2023-20231027131032-500x500.jpg"
+                                width={500}  // Image width
+                                height={500} // Image height
+                                alt="Satranga from ANIMAL"
+                                className="object-cover rounded-md"
+                            />
+                        </div>
+                    </div>
                     {/* Track Info - Closer to album art */}
                     <div className="mb-5">
                         <div className="flex flex-col items-start md:items-center">

@@ -19,7 +19,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
         <LeftSidebar />
 
         {/* Main Content */}
-        <main className="flex-1 bg-gradient-to-b from-gray-900 to-black md:ml-64 overflow-y-auto relative">
+        <main className="flex-1 md:ml-64 overflow-y-auto relative" style={{background: ` linear-gradient(to bottom, #7abcd6, #18181bcc, #121212)`}}>
           <div className="min-h-full p-4 md:p-8">
             {children}
           </div>
