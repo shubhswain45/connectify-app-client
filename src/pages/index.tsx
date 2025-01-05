@@ -1,80 +1,178 @@
-import MainLayout from '@/components/Layouts/MainLayout'
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-function index() {
-  return (
-    <MainLayout>
-      {/* Hero Section */}
-      <div className="space-y-6">
-        {/* Recently Played Section */}
-        <section>
-          <h2 className="text-2xl font-bold text-white mb-4">Good afternoon</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[...Array(6)].map((_, i) => (
-              <div 
-                key={i} 
-                className="bg-gray-800/50 hover:bg-gray-800 transition-colors group flex items-center gap-4 rounded-md overflow-hidden cursor-pointer"
-              >
-                <div className="w-20 h-20 bg-gray-700 flex-shrink-0" />
-                <span className="font-semibold text-white">Playlist {i + 1}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Made For You Section */}
-        <section className="pt-8">
-          <h2 className="text-2xl font-bold text-white mb-4">Made for you</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {[...Array(5)].map((_, i) => (
-              <div 
-                key={i} 
-                className="bg-gray-800/40 hover:bg-gray-800/60 transition-all p-4 rounded-lg cursor-pointer group"
-              >
-                <div className="aspect-square bg-gray-700 mb-4 rounded-md" />
-                <h3 className="text-white font-semibold">Daily Mix {i + 1}</h3>
-                <p className="text-sm text-gray-400">Custom playlist for you</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Recently Played */}
-        <section className="pt-8">
-          <h2 className="text-2xl font-bold text-white mb-4">Recently played</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {[...Array(10)].map((_, i) => (
-              <div 
-                key={i} 
-                className="bg-gray-800/40 hover:bg-gray-800/60 transition-all p-4 rounded-lg cursor-pointer"
-              >
-                <div className="aspect-square bg-gray-700 mb-4 rounded-md" />
-                <h3 className="text-white font-semibold">Album Title {i + 1}</h3>
-                <p className="text-sm text-gray-400">Artist Name</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Your Top Mixes */}
-        <section className="pt-8 pb-24">
-          <h2 className="text-2xl font-bold text-white mb-4">Your top mixes</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {[...Array(5)].map((_, i) => (
-              <div 
-                key={i} 
-                className="bg-gray-800/40 hover:bg-gray-800/60 transition-all p-4 rounded-lg cursor-pointer"
-              >
-                <div className="aspect-square bg-gray-700 mb-4 rounded-md" />
-                <h3 className="text-white font-semibold">Mix {i + 1}</h3>
-                <p className="text-sm text-gray-400">Based on your listening</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </MainLayout>
-  )
+interface PlaylistCard {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl?: string;
 }
 
-export default index
+interface SectionProps {
+  title: string;
+  items: PlaylistCard[];
+}
+
+// Mock data
+const makeForYouItems: PlaylistCard[] = Array.from({ length: 10 }, (_, i) => ({
+  id: i,
+  title: `Daily Mix ${i + 1}`,
+  description: 'Custom playlist for you'
+}));
+
+const recentlyPlayedItems: PlaylistCard[] = Array.from({ length: 10 }, (_, i) => ({
+  id: i,
+  title: `Album Title ${i + 1}`,
+  description: 'Artist Name'
+}));
+
+const topMixesItems: PlaylistCard[] = Array.from({ length: 5 }, (_, i) => ({
+  id: i,
+  title: `Mix ${i + 1}`,
+  description: 'Based on your listening'
+}));
+
+const HomePage: React.FC = () => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [showLeftArrow, setShowLeftArrow] = useState<boolean>(false);
+  const [showRightArrow, setShowRightArrow] = useState<boolean>(true);
+
+  const checkScroll = (): void => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setShowLeftArrow(scrollLeft > 0);
+      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', checkScroll);
+      // Initial check
+      checkScroll();
+      return () => scrollContainer.removeEventListener('scroll', checkScroll);
+    }
+  }, []);
+
+  const scroll = (direction: 'left' | 'right'): void => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 800;
+      scrollContainerRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Scroll arrow button component
+  const ScrollArrowButton: React.FC<{
+    direction: 'left' | 'right';
+    onClick: () => void;
+  }> = ({ direction, onClick }) => (
+    <button
+      onClick={onClick}
+      className="absolute top-1/2 -translate-y-1/2 z-10 bg-black/70 p-2 rounded-full cursor-pointer hover:bg-black/90 transition-all"
+      style={{ [direction]: 0 }}
+      aria-label={`Scroll ${direction}`}
+    >
+      {direction === 'left' ? (
+        <ChevronLeft className="w-6 h-6 text-white" />
+      ) : (
+        <ChevronRight className="w-6 h-6 text-white" />
+      )}
+    </button>
+  );
+
+  // Card component
+  const Card: React.FC<PlaylistCard> = ({ title, description }) => (
+    <div className="bg-gray-800/40 hover:bg-gray-800/60 transition-all p-4 rounded-lg cursor-pointer">
+      <div className="aspect-square bg-gray-700 mb-4 rounded-md" />
+      <h3 className="text-white font-semibold truncate">{title}</h3>
+      <p className="text-sm text-gray-400 truncate">{description}</p>
+    </div>
+  );
+
+  return (
+    <div className="space-y-6">
+      {/* Recently Played Section */}
+      <section>
+        <h2 className="text-2xl font-bold text-white mb-4">Good afternoon</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="bg-gray-800/50 hover:bg-gray-800 transition-colors group flex items-center gap-4 rounded-md overflow-hidden cursor-pointer"
+            >
+              <div className="w-20 h-20 bg-gray-700 flex-shrink-0" />
+              <span className="font-semibold text-white">Playlist {i + 1}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Made For You Section with Horizontal Scroll */}
+      <section className="pt-8 relative">
+        <h2 className="text-2xl font-bold text-white mb-4">Made for you</h2>
+        <div className="relative group">
+          {showLeftArrow && (
+            <ScrollArrowButton direction="left" onClick={() => scroll('left')} />
+          )}
+          
+          {showRightArrow && (
+            <ScrollArrowButton direction="right" onClick={() => scroll('right')} />
+          )}
+
+          <div 
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto gap-6 no-scrollbar"
+            style={{ 
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none'
+            }}
+          >
+            {makeForYouItems.map((item) => (
+              <div key={item.id} className="flex-none w-[140px] sm:w-[160px] md:w-[180px] lg:w-[200px]">
+                <Card {...item} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Recently Played */}
+      <section className="pt-8">
+        <h2 className="text-2xl font-bold text-white mb-4">Recently played</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {recentlyPlayedItems.map((item) => (
+            <Card key={item.id} {...item} />
+          ))}
+        </div>
+      </section>
+
+      {/* Your Top Mixes */}
+      <section className="pt-8 pb-24">
+        <h2 className="text-2xl font-bold text-white mb-4">Your top mixes</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {topMixesItems.map((item) => (
+            <Card key={item.id} {...item} />
+          ))}
+        </div>
+      </section>
+
+      {/* Add global styles for hiding scrollbar */}
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+      
+    </div>
+  );
+};
+
+export default HomePage;
