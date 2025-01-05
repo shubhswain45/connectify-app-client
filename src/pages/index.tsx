@@ -8,11 +8,6 @@ interface PlaylistCard {
   imageUrl?: string;
 }
 
-interface SectionProps {
-  title: string;
-  items: PlaylistCard[];
-}
-
 // Mock data
 const makeForYouItems: PlaylistCard[] = Array.from({ length: 10 }, (_, i) => ({
   id: i,
@@ -170,7 +165,7 @@ const HomePage: React.FC = () => {
           scrollbar-width: none;
         }
       `}</style>
-      
+
     </div>
   );
 };

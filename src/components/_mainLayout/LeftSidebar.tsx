@@ -1,4 +1,4 @@
-import { Home, Library, Search, Plus, Heart } from 'lucide-react'
+import { Home, Search, Plus, Heart } from 'lucide-react'
 import React from 'react'
 import SvgIcon from '../../../public/svgs/SvgIcon';
 
