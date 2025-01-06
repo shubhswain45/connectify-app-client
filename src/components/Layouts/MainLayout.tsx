@@ -6,8 +6,6 @@ import MobileMiniPlayer from '../_mainLayout/MobileMiniPlayer';
 import MobileNavigationFooter from '../_mainLayout/MobileNavigationFooter';
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
-
-
   return (
     <div className="h-screen flex flex-col bg-black">
       {/* Header */}
@@ -18,8 +16,12 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
         {/* Sidebar */}
         <LeftSidebar />
 
-        {/* Main Content */}
-        <main className="flex-1 md:ml-64 overflow-y-auto relative" style={{background: ` linear-gradient(to bottom, #7abcd6, #18181bcc, #121212)`}}>
+        {/* Main Content - Added border-l for the vertical line */}
+        <main 
+        // className="flex-1 md:ml-64 overflow-y-auto relative md:border-l md:border-gray-700" 
+          className="flex-1 md:ml-64 overflow-y-auto relative  md:border-l border-white  rounded-xl" 
+          style={{background: `linear-gradient(to bottom, #7abcd6, #18181bcc, #121212)`}}
+        >
           <div className="min-h-full p-4 md:p-8">
             {children}
           </div>
@@ -34,7 +36,6 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
 
       {/* Mobile Navigation Footer */}
       <MobileNavigationFooter />
-
     </div>
   );
 };

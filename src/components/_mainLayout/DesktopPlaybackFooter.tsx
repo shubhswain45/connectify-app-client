@@ -5,7 +5,7 @@ import SvgIcon from '../../../public/svgs/SvgIcon'
 function DesktopPlaybackFooter() {
     return (
         <footer
-            className="hidden md:flex h-20 bg-gray-900 border-t border-gray-800 px-4 items-center justify-between fixed bottom-0 left-0 right-0 cursor-pointer z-30"
+            className="hidden md:flex h-20 bg-[#000000] px-4 items-center justify-between fixed bottom-0 left-0 right-0 cursor-pointer z-30"
         >
             <div className="flex items-center gap-4 w-1/3">
                 <div className="w-14 h-14 bg-gray-800 rounded"></div>
