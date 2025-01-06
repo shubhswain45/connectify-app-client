@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Search, User, Home, Bell, Settings, LogOut } from 'lucide-react';
 
 const Header = () => {
-  const [isLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
