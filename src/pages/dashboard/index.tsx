@@ -1,10 +1,16 @@
-import LikedTracksHeader from '@/components/_home/LikedTracksHeader';
-import SectionGrid from '@/components/_home/SectionGrid';
-import Footer from '@/components/_home/Footer';
+import React, { useState } from 'react';
+import LikedTracksHeader from '@/components/_dashboard/LikedTracksHeader';
+import SectionGrid from '@/components/_dashboard/SectionGrid';
+import Footer from '@/components/_dashboard/Footer';
+import ShowBanner from '@/components/_dashboard/ShowBanner';
 
 const HomePage: React.FC = () => {
+
   return (
     <div className="space-y-6">
+      {/* Welcome Banner */}
+      <ShowBanner />
+
       {/* Liked Track Header */}
       <LikedTracksHeader />
 
@@ -13,8 +19,7 @@ const HomePage: React.FC = () => {
 
       <SectionGrid title='Good Morning' />
 
-      <Footer/>
-
+      <Footer />
 
       <style jsx global>{`
         .no-scrollbar::-webkit-scrollbar {

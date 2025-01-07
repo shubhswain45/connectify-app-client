@@ -1,4 +1,5 @@
 import { Home, Search, Plus } from 'lucide-react';
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 
 interface Playlist {
@@ -74,10 +75,10 @@ const LeftSidebar: React.FC = () => {
                 {/* Fixed top section */}
                 <div className="p-6 space-y-6 flex-shrink-0">
                     <div className="space-y-3">
-                        <a href="#" className="flex items-center gap-4 text-gray-300 hover:text-white transition">
+                        <Link href="/explore" className="flex items-center gap-4 text-gray-300 hover:text-white transition">
                             <Home size={24} />
                             Home
-                        </a>
+                        </Link>
                         <a href="#" className="flex items-mcenter gap-4 text-gray-300 hover:text-white transition">
                             <Search size={24} />
                             Search

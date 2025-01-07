@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SvgIcon from '../../../public/svgs/SvgIcon';
-import { LibraryMenu } from '../_home/LibraryMenu';
+import { LibraryMenu } from './LibraryMenu';
 import Link from 'next/link';
 
 
