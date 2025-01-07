@@ -120,18 +120,20 @@ const SectionGrid: React.FC<SectionGridProps> = ({ title }) => {
                             <p className="text-[10px] lg:text-sm text-gray-400 mb-1.5 line-clamp-2 leading-relaxed">
                                 {playlist.description}
                             </p>
-                            <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-400">
-                                <div className="flex items-center gap-1">
-                                    <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                                    <span>{playlist.duration}</span>
-                                </div>
-                                <span>•</span>
-                                <span>{playlist.tracks} tracks</span>
-                            </div>
+
                         </div>
                     </div>
                 ))}
             </div>
+            <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
         </div>
     );
 };
