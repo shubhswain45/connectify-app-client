@@ -17,7 +17,6 @@ interface SectionGridProps {
 }
 
 const SectionGrid: React.FC<SectionGridProps> = ({ title }) => {
-    const scrollContainerRef = useRef<HTMLDivElement | null>(null);
     const playlistScrollRef = useRef<HTMLDivElement | null>(null);
     const [showPlaylistLeftArrow, setShowPlaylistLeftArrow] = useState(false);
     const [showPlaylistRightArrow, setShowPlaylistRightArrow] = useState(true);
@@ -65,7 +64,7 @@ const SectionGrid: React.FC<SectionGridProps> = ({ title }) => {
     return (
         <div className="mb-6">
             <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">Popular Playlists</h2>
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">{title}</h2>
                 <div className="flex gap-1.5 sm:gap-2">
                     {showPlaylistLeftArrow && (
                         <button

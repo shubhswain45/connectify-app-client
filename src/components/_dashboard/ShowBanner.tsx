@@ -18,7 +18,7 @@ function ShowBanner() {
                                     Congratulations on Your First Week with Connectify! 🎉
                                 </h3>
                                 <p className="text-xs sm:text-sm md:text-base opacity-90 line-clamp-2 sm:line-clamp-1">
-                                    Thank you for being part of our musical journey. We're excited to have you here!
+                                    Thank you for being part of our musical journey. We&apos;re excited to have you here!
                                     Explore millions of tracks and create your perfect playlists.
                                 </p>
                             </div>

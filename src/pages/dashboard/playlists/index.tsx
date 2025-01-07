@@ -126,7 +126,7 @@ const FeaturedSection = () => {
                 />
                 <button
                   className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-6 sm:w-8 lg:w-10 h-6 sm:h-8 lg:h-10 bg-green-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 hover:bg-green-400"
-                  aria-label={`Play ${artist.name}'s music`}
+                  aria-label={`Play ${artist.name} music`}
                 >
                   <Play className="h-3 sm:h-4 lg:h-5 w-3 sm:w-4 lg:w-5 text-black fill-black" />
                 </button>

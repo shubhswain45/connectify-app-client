@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { AlertCircle, CheckCircle2, Mail } from 'lucide-react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { AlertCircle } from 'lucide-react';
 
 interface FormData {
     email: string;
@@ -42,7 +42,6 @@ const SpotifySignup: React.FC = () => {
         console.log('Form submitted:', submittedData) ;
     };
 
-    const email = watch('email');
 
     return (
         <div className="min-h-screen bg-black text-white flex flex-col items-center py-8">
