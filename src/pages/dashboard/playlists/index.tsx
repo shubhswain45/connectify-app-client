@@ -155,7 +155,7 @@ const FeaturedSection = () => {
             <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 bg-white/10 rounded-full text-xs font-medium mb-2 sm:mb-3">
               FEATURED PLAYLIST
             </span>
-            <h2 className="text-lg sm:text-xl lg:text-3xl font-bold mb-2 sm:mb-3">Today's Top Hits</h2>
+            <h2 className="text-lg sm:text-xl lg:text-3xl font-bold mb-2 sm:mb-3">Today&apos;s Top Hits</h2>
             <p className="text-gray-300 text-xs sm:text-sm lg:text-base mb-3 sm:mb-4 max-w-2xl">
               Catch all the latest music from the hottest artists worldwide. Updated every Friday.
             </p>

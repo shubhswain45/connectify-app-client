@@ -17,7 +17,6 @@ const SpotifySignup: React.FC = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm<FormData>();
 
