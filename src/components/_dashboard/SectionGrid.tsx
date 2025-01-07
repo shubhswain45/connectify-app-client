@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Clock, Play } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 
 // PlaylistCard Interface
