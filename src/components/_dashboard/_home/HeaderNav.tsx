@@ -14,9 +14,8 @@ const HeaderNav = () => {
         <div className="w-full overflow-x-auto">
             <div className="flex gap-1 sm:gap-2 p-0 min-w-max">
                 {tabs.map(tab => (
-                    <Link href={tab.link}>
+                    <Link href={tab.link} key={tab.id}>
                         <button
-                            key={tab.id}
                             className={`
                             px-3 sm:px-4 py-1.5 sm:py-2 
                             rounded-full 

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, User, Home, Bell, Settings, LogOut } from 'lucide-react';
+import { Search, User, Home, Settings, LogOut } from 'lucide-react';
 import Link from 'next/link';
 
 const Header = () => {

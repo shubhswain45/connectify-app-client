@@ -24,6 +24,7 @@ const SectionCard = ({ showTotalTracks, title }: { showTotalTracks: boolean, tit
 
         <h3 className="font-medium text-sm text-gray-900 group-hover:text-white truncate">{title}</h3>
         <p className="text-xs text-gray-500 group-hover:text-gray-300 truncate">shubh</p>
+        {showTotalTracks && <></>}
     </div>
 );
 

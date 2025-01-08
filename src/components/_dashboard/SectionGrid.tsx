@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import SectionCard from './SectionCard';
 
 interface Track {
@@ -57,7 +57,7 @@ const SectionGrid = ({ title, showTotalTracks }: { title: string, showTotalTrack
                     </div>
                     <button
                         className="text-xs md:text-sm font-bold text-gray-400 hover:underline"
-                        // onClick={() => setShowModal(true)}
+                    // onClick={() => setShowModal(true)}
                     >
                         Show all
                     </button>
@@ -108,7 +108,7 @@ const SectionGrid = ({ title, showTotalTracks }: { title: string, showTotalTrack
                 </div>
             </div>
 
-     
+            {showTotalTracks && <></>}
         </>
     );
 };
