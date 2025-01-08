@@ -18,15 +18,15 @@ function MobileNavigationFooter() {
       
       <nav className="md:hidden h-16 bg-[#000000] fixed bottom-0 left-0 right-0 z-30">
         <div className="flex h-full items-center justify-around px-4">
-          <Link href="/" className="flex flex-col items-center text-gray-400 hover:text-white">
+          <Link href="/dashboard" className="flex flex-col items-center text-gray-400 hover:text-white">
             <SvgIcon name='Home' />
             <span className="text-xs mt-1">Home</span>
           </Link>
-          <Link href="/Explore" className="flex flex-col items-center text-gray-400 hover:text-white">
+          <Link href="/dashboard/explore" className="flex flex-col items-center text-gray-400 hover:text-white">
             <SvgIcon name='Explore' />
             <span className="text-xs mt-1">Explore</span>
           </Link>
-          <Link href="/search" className="flex flex-col items-center text-gray-400 hover:text-white">
+          <Link href="/dashboard/search" className="flex flex-col items-center text-gray-400 hover:text-white">
             <SvgIcon name='Search' />
             <span className="text-xs mt-1">Search</span>
           </Link>

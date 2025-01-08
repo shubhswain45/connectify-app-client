@@ -1,35 +1,29 @@
+import { Play } from 'lucide-react';
 import React from 'react';
 
-interface PlaylistCard {
-    id: number;
-    title: string;
-    description: string;
-    imageUrl?: string;
-}
-
-const SectionCard: React.FC<PlaylistCard> = ({ title, description }) => (
-    <div className="p-4 rounded-lg cursor-pointer hover:bg-neutral-800/50 transition-all group/item">
+const SectionCard = ({ showTotalTracks, title }: { showTotalTracks: boolean, title: string }) => (
+    <div
+        className="flex-shrink-0 w-40 md:w-48 lg:w-56 p-2 rounded-lg shadow-sm group hover:bg-gray-900 transition-all duration-300 cursor-pointer"
+    >
         <div className="relative">
-            {/* Image container */}
-            <div className="aspect-square bg-gray-700 mb-4 rounded-md overflow-hidden relative">
-                {/* Play button - visible on card hover */}
-                <div className="opacity-0 group-hover/item:opacity-100 transition-all absolute bottom-2 right-2 z-10 translate-y-2 group-hover/item:translate-y-0 duration-200">
-                    <button 
-                        className="bg-green-500 rounded-full p-3 hover:scale-105 hover:bg-green-400 transition-all shadow-xl"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                        </svg>
-                    </button>
-                </div>
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/item:opacity-100 transition-all" />
+            <div className="w-36 md:w-44 lg:w-52 h-36 md:h-44 lg:h-52 bg-gray-700 rounded-md mb-1 group-hover:bg-gray-800 transition-all duration-300" />
+
+            {/* Play Button Overlay */}
+            <div className="absolute bottom-4 right-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                <button
+                    className="bg-green-500 rounded-full p-3 hover:bg-green-400 hover:scale-105 transition-all duration-300 shadow-lg"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        console.log(`Playing track `);
+                    }}
+                >
+                    <Play className="h-6 w-6 text-black fill-current" />
+                </button>
             </div>
         </div>
-        {/* Card content */}
-        <h3 className="text-white font-semibold text-base mb-1 truncate">{title}</h3>
-        <p className="text-sm text-gray-400 truncate">{description}</p>
+
+        <h3 className="font-medium text-sm text-gray-900 group-hover:text-white truncate">{title}</h3>
+        <p className="text-xs text-gray-500 group-hover:text-gray-300 truncate">shubh</p>
     </div>
 );
 

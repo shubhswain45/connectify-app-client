@@ -1,9 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Search, User, Home, Bell, Settings, LogOut } from 'lucide-react';
+import Link from 'next/link';
 
 const Header = () => {
   const [isLoggedIn] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        buttonRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="bg-[#000000] h-16 flex items-center justify-between px-4 md:px-8 fixed top-0 left-0 right-0 z-40">
@@ -43,24 +64,27 @@ const Header = () => {
       <div className="flex items-center gap-2 justify-end">
         {isLoggedIn ? (
           <div className="relative">
-            <button 
+            <button
+              ref={buttonRef}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="w-8 h-8 rounded-full bg-[#282828] flex items-center justify-center hover:bg-[#3E3E3E] transition-colors"
             >
               <User className="h-4 w-4 text-white" />
             </button>
-            
-            {/* Dropdown Menu */}
-            <div className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#282828] ring-1 ring-black ring-opacity-5 transform transition-all duration-200 ease-in-out ${
-              isDropdownOpen 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-2 pointer-events-none'
-            }`}>
+
+            {/* Dropdown Menu with slower animation */}
+            <div
+              ref={dropdownRef}
+              className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#282828] ring-1 ring-black ring-opacity-5 origin-top transform transition-all duration-300 ease-in-out ${isDropdownOpen
+                  ? 'opacity-100 scale-y-100'
+                  : 'opacity-0 scale-y-0 pointer-events-none'
+                }`}
+            >
               <div className="py-1">
-                <a href="#" className="flex items-center px-4 py-2 text-sm text-white hover:bg-[#3E3E3E] gap-2">
-                  <Bell className="h-4 w-4" />
-                  Notifications
-                </a>
+                <Link href="/dashboard/shubh" className="flex items-center px-4 py-2 text-sm text-white hover:bg-[#3E3E3E] gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-circle-user"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="10" r="3" /><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" /></svg>
+                  Profile
+                </Link>
                 <a href="#" className="flex items-center px-4 py-2 text-sm text-white hover:bg-[#3E3E3E] gap-2">
                   <Settings className="h-4 w-4" />
                   Settings
