@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-const HeaderNav = () => {
+const MediaTabs = () => {
     const activeTab = usePathname()
 
     const tabs = [
@@ -11,7 +11,7 @@ const HeaderNav = () => {
     ];
 
     return (
-        <div className="w-full overflow-x-auto">
+        <div className="w-full overflow-x-auto mt-6">
             <div className="flex gap-1 sm:gap-2 p-0 min-w-max">
                 {tabs.map(tab => (
                     <Link href={tab.link} key={tab.id}>
@@ -38,4 +38,4 @@ const HeaderNav = () => {
     );
 };
 
-export default HeaderNav;
+export default MediaTabs;

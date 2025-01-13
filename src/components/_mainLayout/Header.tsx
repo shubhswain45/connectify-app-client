@@ -1,13 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Search, User, Home, Settings, LogOut } from 'lucide-react';
 import Link from 'next/link';
+import { useCurrentUser } from '@/hooks/auth';
 
 const Header = () => {
+  const {data} = useCurrentUser()
   const [isLoggedIn] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
+  console.log("data", data);
+  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (

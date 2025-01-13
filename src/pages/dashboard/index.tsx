@@ -7,15 +7,14 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-
-      {/* Liked Track Header */}
+      {/* Header for user's liked tracks */}
       <LikedTracksHeader />
 
-      {/* Made For You Section with Horizontal Scroll */}
+      {/* Grids for showing Tracks or playlists */}
       <SectionGrid title='Made for you' showTotalTracks={false} />
-
       <SectionGrid title='Good Morning' showTotalTracks={false} />
 
+      {/* Page footer */}
       <Footer />
     </div>
   );
