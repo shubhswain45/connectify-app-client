@@ -97,7 +97,7 @@ function SignupAuthModel({ isOpen, onClose }: SignupAuthModelProps) {
                                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-emerald-400 w-6 h-6" />
                                     <input
                                         {...register("email", { required: "Email is required" })}
-                                        type="email"
+                                        type="text"
                                         placeholder="Enter your email"
                                         className={`w-full bg-gray-900/50 border ${errors.email ? "border-red-500" : "border-emerald-500/20"
                                             } rounded-lg py-3 px-12 text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/50 backdrop-blur-sm transition-all duration-300`}
