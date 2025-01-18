@@ -1,6 +1,5 @@
 import React from 'react';
 import LikedTracksHeader from '@/components/_dashboard/LikedTracksHeader';
-import SectionGrid from '@/components/_dashboard/SectionGrid';
 import Footer from '@/components/_dashboard/Footer';
 import MediaTabs from '@/components/_dashboard/_explore/MediaTabs';
 
@@ -14,8 +13,8 @@ const ExplorePage: React.FC = () => {
       <LikedTracksHeader />
 
       {/* Grids for showing Tracks or playlists */}
-      <SectionGrid title="Made for you" showTotalTracks={false} />
-      <SectionGrid title="Good Morning" showTotalTracks={false} />
+      {/* <SectionGrid title="Made for you" showTotalTracks={false} />
+      <SectionGrid title="Good Morning" showTotalTracks={false} /> */}
 
       {/* Page footer */}
       <Footer />
