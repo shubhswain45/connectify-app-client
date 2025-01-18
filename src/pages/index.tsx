@@ -6,16 +6,6 @@ import SigninpAuthModel from '@/components/_landing/SigninAuthModel';
 const SignupPage = () => {
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
-  const [dateOfBirth, setDateOfBirth] = useState({
-    day: '',
-    month: '',
-    year: ''
-  });
-
-  const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-black text-white flex flex-col md:flex-row">
@@ -61,7 +51,7 @@ const SignupPage = () => {
             </button>
             
             <p className="text-xs text-gray-400 mt-2">
-              By signing up, you agree to Connectify's Terms of Service and Privacy Policy, including our Cookie Policy.
+              By signing up, you agree to Connectify Terms of Service and Privacy Policy, including our Cookie Policy.
             </p>
           </div>
           

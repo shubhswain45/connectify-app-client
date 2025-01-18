@@ -19,7 +19,7 @@ export const useSignupUser = () => {
       toast.success("Signup successful now pls verified your account!");
     },
 
-    onError: (error: any) => {
+    onError: (error) => {
       const errorMessage = error.message.split(':').pop()?.trim() || "Something went wrong";
       toast.error(errorMessage);
     },
@@ -40,7 +40,7 @@ export const useVerifyEmail = () => {
       queryClient.setQueryData(["currentUser"], data);
     },
 
-    onError: (error: any) => {
+    onError: (error) => {
       const errorMessage = error.message.split(":").pop()?.trim() || "Something went wrong";
       toast.error(errorMessage);
     },
@@ -66,7 +66,7 @@ export const useLoginUser = () => {
       })
     },
 
-    onError: (error: any) => {
+    onError: (error) => {
       const errorMessage = error.message.split(':').pop()?.trim() || "Something went wrong";
       toast.error(errorMessage);
     }

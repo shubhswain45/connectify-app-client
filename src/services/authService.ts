@@ -38,8 +38,13 @@ class AuthService {
     try {
       const { signupUser } = await graphQLClient.request(signupUserMutation, { input: userData });
       return signupUser;
-    } catch (error: any) {
-      throw new Error(error?.response?.errors?.[0]?.message || "Something went wrong");
+    } catch (error: unknown) {
+      if (error && typeof error === "object" && "response" in error) {
+        const responseError = error as { response?: { errors?: { message?: string }[] } };
+        throw new Error(responseError.response?.errors?.[0]?.message || "Ss");
+      } else {
+        throw new Error("Ss");
+      }
     }
   }
 
@@ -54,8 +59,13 @@ class AuthService {
         await this.setAuthTokenAsCookie(verifyEmail.authToken)
         return verifyEmail;
       }
-    } catch (error: any) {
-      throw new Error(error?.response?.errors?.[0]?.message || "Something went wrong");
+    } catch (error: unknown) {
+      if (error && typeof error === "object" && "response" in error) {
+        const responseError = error as { response?: { errors?: { message?: string }[] } };
+        throw new Error(responseError.response?.errors?.[0]?.message || "Ss");
+      } else {
+        throw new Error("Ss");
+      }
     }
   }
 
@@ -70,9 +80,13 @@ class AuthService {
       }
 
       return loginUser
-    } catch (error: any) {
-      // Throw only the error message for concise output
-      throw new Error(error?.response?.errors?.[0]?.message || "Something went wrong");
+    } catch (error: unknown) {
+      if (error && typeof error === "object" && "response" in error) {
+        const responseError = error as { response?: { errors?: { message?: string }[] } };
+        throw new Error(responseError.response?.errors?.[0]?.message || "Ss");
+      } else {
+        throw new Error("Ss");
+      }
     }
   }
 
@@ -84,9 +98,13 @@ class AuthService {
     try {
       const { forgotPassword } = await graphqlClient.request(forgotPasswordMutation, { usernameOrEmail });
       return forgotPassword;
-    } catch (error: any) {
-      // Throw only the error message for concise output
-      throw new Error(error?.response?.errors?.[0]?.message || "Something went wrong");
+    } catch (error: unknown) {
+      if (error && typeof error === "object" && "response" in error) {
+        const responseError = error as { response?: { errors?: { message?: string }[] } };
+        throw new Error(responseError.response?.errors?.[0]?.message || "Ss");
+      } else {
+        throw new Error("Ss");
+      }
     }
   }
 
@@ -103,9 +121,13 @@ class AuthService {
       const graphqlClient = createGraphqlClient()
       const { resetPassword } = await graphqlClient.request(resetPasswordMutation, { input });
       return resetPassword;
-    } catch (error: any) {
-      // Throw only the error message for concise output
-      throw new Error(error?.response?.errors?.[0]?.message || "Something went wrong");
+    } catch (error: unknown) {
+      if (error && typeof error === "object" && "response" in error) {
+        const responseError = error as { response?: { errors?: { message?: string }[] } };
+        throw new Error(responseError.response?.errors?.[0]?.message || "Ss");
+      } else {
+        throw new Error("Ss");
+      }
     }
   }
 
