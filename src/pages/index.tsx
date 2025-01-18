@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Music, Headphones, Apple, Globe, X, Mail, Lock, User, Calendar } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Music, Headphones, Globe } from 'lucide-react';
 import SignupAuthModel from '@/components/_landing/SignupAuthModel';
 import SigninpAuthModel from '@/components/_landing/SigninAuthModel';
 

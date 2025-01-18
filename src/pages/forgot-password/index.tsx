@@ -39,7 +39,7 @@ function ForgotPasswordForm() {
                         Forgot Password
                     </h1>
                     <p className="text-gray-400 text-center">
-                        Enter your Username Or Email address and we'll send you instructions to reset your password.
+                        Enter your Username Or Email address and we will send you instructions to reset your password.
                     </p>
                 </div>
 

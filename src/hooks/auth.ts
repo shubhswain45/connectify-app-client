@@ -2,9 +2,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import AuthService from "@/services/authService";
 import { LoginUserInput, ResetPasswordInput, SignupUserInput, VerifyEmailInput } from "../../gql/graphql";
 import { toast } from "react-toastify";
-import { createGraphqlClient } from "@/clients/api";
-import { forgotPasswordMutation, resetPasswordMutation, verifyEmailMutation } from "@/graphql/mutations/auth";
-import { getCurrentUserQuery } from "@/graphql/queries/auth";
 import { useRouter } from "next/router";
 
 export const useCurrentUser = () => {
@@ -84,7 +81,7 @@ export const useForgotPassword = () => {
       return forgotPassword
     },
 
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Reset link send successful to your Email!");
     },
 
@@ -103,7 +100,7 @@ export const useResetPassword = () => {
       return resetPassword
     },
 
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Reset password successful! now back to login");
     },
 

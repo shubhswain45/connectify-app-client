@@ -1,4 +1,3 @@
-import { toast } from "sonner";
 import { CreateTrackPayload } from "../../gql/graphql";
 import { createGraphqlClient } from "@/clients/api";
 import { createTrackMutation } from "@/graphql/mutations/track";
@@ -25,10 +24,13 @@ class TrackService {
                 payload: trackData,
             });
             return createTrack;
-        } catch (error: any) {
-            throw new Error(
-                error?.response?.errors?.[0]?.message || "Ss"
-            );
+        } catch (error: unknown) {
+            if (error && typeof error === "object" && "response" in error) {
+                const responseError = error as { response?: { errors?: { message?: string }[] } };
+                throw new Error(responseError.response?.errors?.[0]?.message || "Ss");
+            } else {
+                throw new Error("Ss");
+            }
         }
     }
 }

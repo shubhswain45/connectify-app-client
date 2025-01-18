@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Play, MoreHorizontal, Pause } from 'lucide-react';
+import React from 'react';
+import { Play, MoreHorizontal } from 'lucide-react';
 
 interface TopTrack {
     id: number;

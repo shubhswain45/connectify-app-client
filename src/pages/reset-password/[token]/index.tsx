@@ -3,7 +3,7 @@ import { Lock, ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { useForm } from "react-hook-form";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useForgotPassword, useResetPassword } from '@/hooks/auth';
+import { useResetPassword } from '@/hooks/auth';
 
 interface ResetPasswordFormData {
     newPassword: string;
@@ -20,7 +20,7 @@ function ResetPasswordForm() {
         handleSubmit,
         register,
         watch,
-        formState: { errors, isSubmitting },
+        formState: { errors },
     } = useForm<ResetPasswordFormData>();
 
     const { mutate: resetPassword, isPending } = useResetPassword()

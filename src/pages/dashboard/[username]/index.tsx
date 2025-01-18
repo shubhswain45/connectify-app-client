@@ -1,10 +1,8 @@
 import React from 'react';
-import { MoreHorizontal, Play, Share2 } from 'lucide-react';
 import ProfileHeader from '@/components/_dashboard/_username/ProfileHeader';
 import UserActions from '@/components/_dashboard/_username/UserActions';
 import UserTracks from '@/components/_dashboard/_username/UserTracks';
 import MediaTabs from '@/components/_dashboard/_explore/MediaTabs';
-import { useCurrentUser } from '@/hooks/auth';
 
 interface TopTrack {
   id: number;

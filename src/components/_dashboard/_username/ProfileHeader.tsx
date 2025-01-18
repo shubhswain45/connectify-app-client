@@ -23,7 +23,7 @@ interface UserData {
 }
 
 function ProfileHeader({ userData }: { userData: UserData }) {
-    const { data, isLoading } = useCurrentUser()
+    const { data } = useCurrentUser()
 
     return (
         <div className="px-4 md:px-8 pt-16 pb-6">

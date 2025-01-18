@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, User, Home, Settings, LogOut } from 'lucide-react';
+import { Search, Home, Settings, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { useCurrentUser } from '@/hooks/auth';
 import Image from 'next/image';

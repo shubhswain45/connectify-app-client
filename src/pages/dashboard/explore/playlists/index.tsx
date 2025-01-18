@@ -1,8 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
-import SectionGrid from '@/components/_dashboard/SectionGrid';
+import React from 'react';
 import LikedTracksHeader from '@/components/_dashboard/LikedTracksHeader';
-import Image from 'next/image';
 import Footer from '@/components/_dashboard/Footer';
 import MediaTabs from '@/components/_dashboard/_explore/MediaTabs';
 import ArtistsSection from '@/components/_dashboard/_explore/ArtistsSection';
@@ -23,7 +20,7 @@ const ExplorePlaylistsPage = () => {
       <ArtistsSection />
 
       {/* Grids for showing Tracks or playlists */}
-      <SectionGrid title='Popular playlists' showTotalTracks={true} />
+      {/* <SectionGrid title='Popular playlists' showTotalTracks={true} /> */}
 
       {/* Page footer */}
       <Footer />

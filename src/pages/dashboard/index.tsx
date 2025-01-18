@@ -27,7 +27,7 @@ const HomePage: React.FC<HomePageProps> = ({ tracks }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     // Create GraphQL client
     const graphqlClient = createGraphqlClient();

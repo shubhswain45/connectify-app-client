@@ -9,11 +9,13 @@ interface SectionGridProps {
     showTotalTracks: boolean;
 }
 
-const SectionGrid: React.FC<SectionGridProps> = ({ title, tracks, showTotalTracks }) => {
+const SectionGrid: React.FC<SectionGridProps> = ({ title, tracks }) => {
     const scrollContainerRef = useRef<HTMLDivElement | null>(null);
     const [showLeftArrow, setShowLeftArrow] = useState<boolean>(false);
     const [showRightArrow, setShowRightArrow] = useState<boolean>(false);
     const [showAll, setShowAll] = useState(false)
+    console.log(showAll);
+    
 
     const checkScrollButtons = (): void => {
         const container = scrollContainerRef.current;

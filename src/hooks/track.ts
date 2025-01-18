@@ -11,7 +11,7 @@ export const useCreateTrack = () => {
         onSuccess: () => {
             toast.success("Track created successfully");
         },
-        onError: (error: any) => {
+        onError: (error) => {
             const errorMessage = error.message.split(":").pop()?.trim() || "Something went wrong";
             toast.error(errorMessage, {
                 position: "top-center"
