@@ -17,7 +17,11 @@ const documents = {
     "\n    #graphql\n    mutation SignupUser($input: SignupUserInput!) {\n        signupUser(input: $input)\n    }\n": types.SignupUserDocument,
     "\n    #graphql\n    mutation VerifyEmail($input: VerifyEmailInput!) {\n        verifyEmail(input: $input) {\n            id\n            email\n            username\n            fullName\n            bio\n            profileImageURL\n            authToken\n        }\n    }\n": types.VerifyEmailDocument,
     "\n    #graphql\n    mutation LoginUser($input: LoginUserInput!) {\n        loginUser(input: $input) {\n          id\n          email\n          username\n          fullName\n          bio\n          profileImageURL\n          authToken\n        }\n    }\n": types.LoginUserDocument,
+    "\n    #graphql\n    mutation ForgotPassword($usernameOrEmail: String!) {\n        forgotPassword(usernameOrEmail: $usernameOrEmail)\n    }\n": types.ForgotPasswordDocument,
+    "\n    #graphql\n    mutation ResetPassword($input: ResetPasswordInput!){       \n        resetPassword(input: $input)\n    }\n": types.ResetPasswordDocument,
+    "\n    #graphql\n    mutation CreateTrack($payload: createTrackPayload!) {\n        createTrack(payload: $payload) {\n            id\n            title\n            artist\n            duration\n            coverImageUrl\n            audioFileUrl\n            hasLiked\n            authorName\n        }\n    }\n": types.CreateTrackDocument,
     "#graphql\n    query GetCurrentUser {\n        getCurrentUser {\n            id\n            email\n            username\n            fullName\n            bio\n            profileImageURL\n        }\n    }\n": types.GetCurrentUserDocument,
+    "#graphql\n    query GetFeedTracks {\n        getFeedTracks {\n            id\n            title\n            artist\n            duration\n            coverImageUrl\n            audioFileUrl\n            hasLiked\n            authorName\n        }\n    }\n": types.GetFeedTracksDocument,
 };
 
 /**
@@ -49,7 +53,23 @@ export function graphql(source: "\n    #graphql\n    mutation LoginUser($input: 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n    #graphql\n    mutation ForgotPassword($usernameOrEmail: String!) {\n        forgotPassword(usernameOrEmail: $usernameOrEmail)\n    }\n"): (typeof documents)["\n    #graphql\n    mutation ForgotPassword($usernameOrEmail: String!) {\n        forgotPassword(usernameOrEmail: $usernameOrEmail)\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    #graphql\n    mutation ResetPassword($input: ResetPasswordInput!){       \n        resetPassword(input: $input)\n    }\n"): (typeof documents)["\n    #graphql\n    mutation ResetPassword($input: ResetPasswordInput!){       \n        resetPassword(input: $input)\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    #graphql\n    mutation CreateTrack($payload: createTrackPayload!) {\n        createTrack(payload: $payload) {\n            id\n            title\n            artist\n            duration\n            coverImageUrl\n            audioFileUrl\n            hasLiked\n            authorName\n        }\n    }\n"): (typeof documents)["\n    #graphql\n    mutation CreateTrack($payload: createTrackPayload!) {\n        createTrack(payload: $payload) {\n            id\n            title\n            artist\n            duration\n            coverImageUrl\n            audioFileUrl\n            hasLiked\n            authorName\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "#graphql\n    query GetCurrentUser {\n        getCurrentUser {\n            id\n            email\n            username\n            fullName\n            bio\n            profileImageURL\n        }\n    }\n"): (typeof documents)["#graphql\n    query GetCurrentUser {\n        getCurrentUser {\n            id\n            email\n            username\n            fullName\n            bio\n            profileImageURL\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "#graphql\n    query GetFeedTracks {\n        getFeedTracks {\n            id\n            title\n            artist\n            duration\n            coverImageUrl\n            audioFileUrl\n            hasLiked\n            authorName\n        }\n    }\n"): (typeof documents)["#graphql\n    query GetFeedTracks {\n        getFeedTracks {\n            id\n            title\n            artist\n            duration\n            coverImageUrl\n            audioFileUrl\n            hasLiked\n            authorName\n        }\n    }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

@@ -36,3 +36,17 @@ export const loginUserMutation = graphql(`
         }
     }
 `)
+
+export const forgotPasswordMutation = graphql(`
+    #graphql
+    mutation ForgotPassword($usernameOrEmail: String!) {
+        forgotPassword(usernameOrEmail: $usernameOrEmail)
+    }
+`)
+
+export const resetPasswordMutation = graphql(`
+    #graphql
+    mutation ResetPassword($input: ResetPasswordInput!){       
+        resetPassword(input: $input)
+    }
+`)

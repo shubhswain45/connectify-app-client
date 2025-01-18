@@ -1,24 +1,19 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react'
 import SectionCard from './SectionCard';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Track } from '../../../gql/graphql';
 
-interface Track {
-    id: number;
+interface SectionGridProps {
     title: string;
-    artist: string;
+    tracks: Track[] | null; // Optional because some grids may not pass this
+    showTotalTracks: boolean;
 }
 
-const SectionGrid = ({ title, showTotalTracks }: { title: string, showTotalTracks: boolean }) => {
+const SectionGrid: React.FC<SectionGridProps> = ({ title, tracks, showTotalTracks }) => {
     const scrollContainerRef = useRef<HTMLDivElement | null>(null);
     const [showLeftArrow, setShowLeftArrow] = useState<boolean>(false);
     const [showRightArrow, setShowRightArrow] = useState<boolean>(false);
-
-    // Dummy tracks data
-    const tracks: Track[] = Array.from({ length: 20 }, (_, i) => ({
-        id: i,
-        title: `Track ${i + 1}`,
-        artist: `Artist ${i + 1}`,
-    }));
+    const [showAll, setShowAll] = useState(false)
 
     const checkScrollButtons = (): void => {
         const container = scrollContainerRef.current;
@@ -57,7 +52,7 @@ const SectionGrid = ({ title, showTotalTracks }: { title: string, showTotalTrack
                     </div>
                     <button
                         className="text-xs md:text-sm font-bold text-gray-400 hover:underline"
-                    // onClick={() => setShowModal(true)}
+                        onClick={() => setShowAll(true)}
                     >
                         Show all
                     </button>
@@ -89,9 +84,9 @@ const SectionGrid = ({ title, showTotalTracks }: { title: string, showTotalTrack
                         className="flex gap-0 overflow-x-scroll px-0 scrollbar-hide hide-scrollbar"
                         onScroll={checkScrollButtons}
                     >
-                        {tracks.map((track) => (
+                        {tracks?.map((track) => (
                             <div key={track.id}>
-                                <SectionCard showTotalTracks={false} title={track.title} />
+                                <SectionCard track={track} />
                             </div>
                         ))}
                     </div>
@@ -107,10 +102,8 @@ const SectionGrid = ({ title, showTotalTracks }: { title: string, showTotalTrack
                     )}
                 </div>
             </div>
-
-            {showTotalTracks && <></>}
         </>
-    );
-};
+    )
+}
 
-export default SectionGrid;
+export default SectionGrid

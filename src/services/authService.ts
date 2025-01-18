@@ -1,6 +1,6 @@
 import { createGraphqlClient } from "@/clients/api";
-import { LoginUserInput, SignupUserInput, VerifyEmailInput } from "../../gql/graphql";
-import { loginUserMutation, signupUserMutation, verifyEmailMutation } from "@/graphql/mutations/auth";
+import { LoginUserInput, ResetPasswordInput, SignupUserInput, VerifyEmailInput } from "../../gql/graphql";
+import { forgotPasswordMutation, loginUserMutation, resetPasswordMutation, signupUserMutation, verifyEmailMutation } from "@/graphql/mutations/auth";
 import { getCurrentUserQuery } from "@/graphql/queries/auth";
 
 class AuthService {
@@ -65,11 +65,44 @@ class AuthService {
     try {
       const { loginUser } = await graphqlClient.request(loginUserMutation, { input: userData });
 
-      if(loginUser){
+      if (loginUser) {
         await this.setAuthTokenAsCookie(loginUser.authToken)
       }
 
       return loginUser
+    } catch (error: any) {
+      // Throw only the error message for concise output
+      throw new Error(error?.response?.errors?.[0]?.message || "Something went wrong");
+    }
+  }
+
+  static async forgotPassword(usernameOrEmail: string) {
+    if (!usernameOrEmail) {
+      throw new Error("Email or Username is required!")
+    }
+    const graphqlClient = createGraphqlClient()
+    try {
+      const { forgotPassword } = await graphqlClient.request(forgotPasswordMutation, { usernameOrEmail });
+      return forgotPassword;
+    } catch (error: any) {
+      // Throw only the error message for concise output
+      throw new Error(error?.response?.errors?.[0]?.message || "Something went wrong");
+    }
+  }
+
+  static async resetPassword(input: ResetPasswordInput) {
+    if (input.newPassword != input.confirmPassword) {
+      throw new Error("Password does't match.")
+    }
+
+    if (input.newPassword.length < 6) {
+      throw new Error("Password must be at least 6 characters long.");
+    }
+
+    try {
+      const graphqlClient = createGraphqlClient()
+      const { resetPassword } = await graphqlClient.request(resetPasswordMutation, { input });
+      return resetPassword;
     } catch (error: any) {
       // Throw only the error message for concise output
       throw new Error(error?.response?.errors?.[0]?.message || "Something went wrong");

@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import AuthService from "@/services/authService";
-import { LoginUserInput, SignupUserInput, VerifyEmailInput } from "../../gql/graphql";
+import { LoginUserInput, ResetPasswordInput, SignupUserInput, VerifyEmailInput } from "../../gql/graphql";
 import { toast } from "react-toastify";
 import { createGraphqlClient } from "@/clients/api";
-import { verifyEmailMutation } from "@/graphql/mutations/auth";
+import { forgotPasswordMutation, resetPasswordMutation, verifyEmailMutation } from "@/graphql/mutations/auth";
 import { getCurrentUserQuery } from "@/graphql/queries/auth";
 import { useRouter } from "next/router";
 
@@ -75,3 +75,41 @@ export const useLoginUser = () => {
     }
   });
 };
+
+
+export const useForgotPassword = () => {
+  return useMutation({
+    mutationFn: async (usernameOrEmail: string) => {
+      const forgotPassword = await AuthService.forgotPassword(usernameOrEmail)
+      return forgotPassword
+    },
+
+    onSuccess: (data) => {
+      toast.success("Reset link send successful to your Email!");
+    },
+
+    onError: (error) => {
+      const errorMessage = error.message.split(':').pop()?.trim() || "Something went wrong";
+      toast.error(errorMessage);
+    }
+  });
+}
+
+
+export const useResetPassword = () => {
+  return useMutation({
+    mutationFn: async (input: ResetPasswordInput) => {
+      const resetPassword = await AuthService.resetPassword(input)
+      return resetPassword
+    },
+
+    onSuccess: (data) => {
+      toast.success("Reset password successful! now back to login");
+    },
+
+    onError: (error) => {
+      const errorMessage = error.message.split(':').pop()?.trim() || "Something went wrong";
+      toast.error(errorMessage);
+    }
+  });
+}

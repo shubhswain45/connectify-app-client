@@ -117,3 +117,21 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: #68D391;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #48BB78;
+}
+
+.toggle-checkbox {
+  right: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.toggle-label {
+  transition: all 0.3s ease-in-out;
+}

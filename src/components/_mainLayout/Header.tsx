@@ -2,16 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Search, User, Home, Settings, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { useCurrentUser } from '@/hooks/auth';
+import Image from 'next/image';
 
 const Header = () => {
-  const {data} = useCurrentUser()
+  const { data } = useCurrentUser()
   const [isLoggedIn] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  console.log("data", data);
-  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -73,15 +72,21 @@ const Header = () => {
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="w-8 h-8 rounded-full bg-[#282828] flex items-center justify-center hover:bg-[#3E3E3E] transition-colors"
             >
-              <User className="h-4 w-4 text-white" />
+              <Image
+                src={data?.getCurrentUser?.profileImageURL || "https://st4.depositphotos.com/14903220/22197/v/450/depositphotos_221970610-stock-illustration-abstract-sign-avatar-icon-profile.jpg"}
+                alt='profile img'
+                width={100}
+                height={100}
+                className='rounded-full'
+              />
             </button>
 
             {/* Dropdown Menu with slower animation */}
             <div
               ref={dropdownRef}
               className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#282828] ring-1 ring-black ring-opacity-5 origin-top transform transition-all duration-300 ease-in-out ${isDropdownOpen
-                  ? 'opacity-100 scale-y-100'
-                  : 'opacity-0 scale-y-0 pointer-events-none'
+                ? 'opacity-100 scale-y-100'
+                : 'opacity-0 scale-y-0 pointer-events-none'
                 }`}
             >
               <div className="py-1">

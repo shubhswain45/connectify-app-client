@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Mail, Lock, Headphones } from 'lucide-react';
 import { useForm } from "react-hook-form";
 import { useLoginUser } from '@/hooks/auth';
+import Link from 'next/link';
 
 interface SigninFormData {
     usernameOrEmail: string;
@@ -100,12 +101,14 @@ function SigninAuthModel({ isOpen, onClose }: SigninAuthModelProps) {
                     </div>
 
                     <div className="flex justify-end">
-                        <button
-                            type="button"
-                            className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
-                        >
-                            Forgot password?
-                        </button>
+                        <Link href={"/forgot-password"}>
+                            <button
+                                type="button"
+                                className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
+                            >
+                                Forgot password?
+                            </button>
+                        </Link>
                     </div>
 
                     <button

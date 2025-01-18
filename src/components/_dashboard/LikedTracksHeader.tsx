@@ -1,29 +1,58 @@
-import Link from "next/link"
+import React, { useState } from 'react';
+import { Heart, Plus } from 'lucide-react';
+import CreateTrackDialog from './CreateTrackDialog';
 
-const LikedTracksHeader = () => {
+function LikedTracksHeader() {
+  const [createTrackOpen, setCreateTrackOpen] = useState(false);
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 mt-4">
-      <Link href={"/dashboard/liked"}>
-        <button
-          className="relative group flex items-center rounded-md overflow-hidden gap-x-4
-        bg-neutral-100/10 hover:bg-neutral-100/20 transition pr-4">
-          <div className="relative min-w-[64px] min-h-[64px] bg-blue-200 rounded-md flex justify-center items-center">
-            <svg className="w-8 h-8 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-            </svg>
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 w-full">
+        {/* Liked Songs Header */}
+        <div className="group bg-gradient-to-r from-emerald-600/40 to-gray-900 p-2 sm:p-3 rounded-lg transition-all hover:from-emerald-600/50 hover:to-gray-800">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="bg-gradient-to-br from-emerald-400 to-teal-500 p-2 sm:p-2.5 rounded-lg group-hover:scale-105 transition-transform">
+              <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+            </div>
+            
+            <div className="min-w-0 flex-1">
+              <p className="text-xs sm:text-sm text-white/80 truncate">Playlist</p>
+              <h1 className="text-sm sm:text-base font-bold text-white truncate">Liked Songs</h1>
+            </div>
+
+            <button className="bg-emerald-500 hover:bg-emerald-400 text-white rounded-full p-1.5 sm:p-2 hover:scale-110 transition-all">
+              <svg className="w-3 h-3 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
           </div>
-          <p className="font-medium truncate py-5">Liked Tracks</p>
-          <div
-            className="absolute transition opacity-0 rounded-full flex justify-center items-center
-          bg-green-500 p-3 drop-shadow-md right-5 group-hover:opacity-100 hover:scale-110">
-            <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
+        </div>
+
+        {/* Create Track Header */}
+        <div 
+          className="group bg-gray-900/50 hover:bg-gray-800/50 p-2 sm:p-3 rounded-lg border border-gray-800 hover:border-gray-700 transition-all"
+          onClick={() => setCreateTrackOpen(true)}
+        >
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="bg-gradient-to-br from-pink-600 to-purple-600 p-2 sm:p-2.5 rounded-lg group-hover:scale-105 transition-transform">
+              <Plus className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:rotate-90 transition-transform" />
+            </div>
+            
+            <div className="min-w-0 flex-1">
+              <h2 className="text-sm sm:text-base font-medium text-white group-hover:text-emerald-400 truncate">Create Track</h2>
+              <p className="text-xs sm:text-sm text-gray-400 group-hover:text-gray-300 truncate">Add your own music</p>
+            </div>
+
+            <button className="bg-gray-800 group-hover:bg-emerald-500 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-all text-xs sm:text-sm flex items-center gap-1 sm:gap-1.5">
+              <Plus className="w-3 h-3 sm:w-4 sm:h-4 group-hover:rotate-90 transition-transform" />
+              <span className="hidden sm:inline">Add</span>
+            </button>
           </div>
-        </button>
-      </Link>
-    </div>
-  )
+        </div>
+      </div>
+      <CreateTrackDialog songDialogOpen={createTrackOpen} setSongDialogOpen={setCreateTrackOpen} />
+    </>
+  );
 }
 
-export default LikedTracksHeader
+export default LikedTracksHeader;

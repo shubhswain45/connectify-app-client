@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   // Check if the current route is '/signup' or '/login'
-  const isAuthPage = router.pathname === "/" || router.pathname === "/login";
+  const isAuthPage = router.pathname === "/" || router.pathname === "/login" || router.pathname === "/forgot-password" || router.pathname === "/reset-password/[token]";
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <>
           <Component {...pageProps} />
           <Toaster />
-          <ToastContainer/>
+          <ToastContainer />
         </>
       ) : (
         <MainLayout>

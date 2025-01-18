@@ -1,3 +1,5 @@
+import { useCurrentUser } from '@/hooks/auth';
+import Image from 'next/image';
 import React from 'react'
 interface TopTrack {
     id: number;
@@ -21,15 +23,19 @@ interface UserData {
 }
 
 function ProfileHeader({ userData }: { userData: UserData }) {
+    const { data, isLoading } = useCurrentUser()
+
     return (
         <div className="px-4 md:px-8 pt-16 pb-6">
             <div className="flex flex-col md:flex-row gap-6 items-center md:items-end">
                 {/* Profile Image */}
                 <div className="flex-shrink-0">
-                    <img
-                        src={userData.profileImage}
-                        alt={userData.name}
-                        className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full shadow-2xl"
+                    <Image
+                        src={data?.getCurrentUser?.profileImageURL || "https://st4.depositphotos.com/14903220/22197/v/450/depositphotos_221970610-stock-illustration-abstract-sign-avatar-icon-profile.jpg"}
+                        alt='profile img'
+                        width={100}
+                        height={100}
+                        className='w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full shadow-2xl'
                     />
                 </div>
 
