@@ -29,16 +29,12 @@ const NowPlaying: React.FC<NowPlayingProps> = ({
 
     // Get a random theme set (each theme set contains 4 colors for more dynamic gradients)
     const gradientThemes = [
-        ['#1DB954', '#191414', '#535353', '#1DB954'], // Spotify
-        ['#FF512F', '#DD2476', '#FF512F', '#DD2476'], // Sunset
-        ['#2E3192', '#1BFFFF', '#2E3192', '#1BFFFF'], // Ocean
-        ['#7303c0', '#ec38bc', '#7303c0', '#ec38bc'], // Purple Rain
-        ['#134E5E', '#71B280', '#134E5E', '#71B280'], // Forest
-        ['#ff4e50', '#f9d423', '#ff4e50', '#f9d423'], // Fire
-        ['#00c6ff', '#0072ff', '#00c6ff', '#0072ff'], // Summer Sky
-        ['#4776E6', '#8E54E9', '#4776E6', '#8E54E9'], // Electric Violet
-        ['#FDC830', '#F37335', '#FDC830', '#F37335'], // Golden Hour
-        ['#FF0099', '#493240', '#FF0099', '#493240']  // Neon Night
+        ['#1a1a1a', '#2d2d2d', '#1a1a1a', '#2d2d2d'], // Charcoal
+        ['#000000', '#1f1f1f', '#000000', '#1f1f1f'], // Midnight
+        ['#161616', '#363636', '#161616', '#363636'], // Smoke
+        ['#1a1a2e', '#16213e', '#1a1a2e', '#16213e'], // Deep Ocean
+        ['#0d0d0d', '#262626', '#0d0d0d', '#262626'], // Shadow
+        ['#1f1f1f', '#2b2b2b', '#1f1f1f', '#2b2b2b']  // Graphite
     ];
 
     useEffect(() => {
