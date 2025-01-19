@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SvgIcon from '../../../public/svgs/SvgIcon'
 import Image from 'next/image'
-import { Button } from '../ui/Button'
 import { useTrackStore } from '@/store/useTrackStore'
 import MoreMenu from '../MoreMenu'
 
@@ -27,7 +26,6 @@ const NowPlaying: React.FC<NowPlayingProps> = ({
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const [theme, setTheme] = useState<string[]>([])
     const { trackDetails, togglePlay } = useTrackStore()
-    const [isPlaybackDrawerOpen, setIsPlaybackDrawerOpen] = useState(false)
 
     // Get a random theme set (each theme set contains 4 colors for more dynamic gradients)
     const gradientThemes = [
@@ -213,12 +211,7 @@ const NowPlaying: React.FC<NowPlayingProps> = ({
                 
 
                 {/* Backdrop overlay when drawer is open */}
-                {isDrawerOpen && (
-                    <div
-                        className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
-                        onClick={() => {setIsDrawerOpen(false); setIsPlaybackDrawerOpen(false)}}
-                    />
-                )}
+                
 
             </div>
         </>
