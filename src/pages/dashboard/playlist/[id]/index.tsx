@@ -47,19 +47,19 @@ const AlbumPage = () => {
   };
 
   return (
-    <div className="min-h-screen text-white p-4 md:p-8">
+    <div className="min-h-screen text-white p-2 md:p-8">
       {/* Album Header */}
-      <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
+      <div className="flex flex-col md:flex-row items-start gap-6 mb-6">
         <img 
           src={albumData.coverUrl} 
           alt={albumData.title}
-          className="w-48 h-48 md:w-64 md:h-64 shadow-2xl rounded"
+          className="w-40 h-40 md:w-64 md:h-64 shadow-2xl rounded"
         />
         
         <div className="flex flex-col justify-end">
           <span className="text-sm font-medium">Album</span>
-          <h1 className="text-3xl md:text-6xl font-bold mb-4">{albumData.title}</h1>
-          <div className="flex items-center gap-2 text-sm text-gray-300">
+          <h1 className="text-xl md:text-6xl font-bold mb-2">{albumData.title}</h1>
+          <div className="flex items-center gap-2 text-xs md:text-sm text-gray-300">
             <img 
               src="/api/placeholder/40/40" 
               alt="Artist" 
@@ -75,12 +75,12 @@ const AlbumPage = () => {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex items-center gap-4 mb-8">
-        <button className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-105 transition-transform">
-          <Play className="w-6 h-6 fill-current" />
+      <div className="flex items-center gap-4 mb-6">
+        <button className="w-10 h-10 md:w-12 md:h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+          <Play className="w-5 h-5 md:w-6 md:h-6 fill-current" />
         </button>
-        <Heart className="w-8 h-8 text-gray-400 hover:text-white cursor-pointer" />
-        <MoreHorizontal className="w-8 h-8 text-gray-400 hover:text-white cursor-pointer" />
+        <Heart className="w-6 h-6 md:w-8 md:h-8 text-gray-400 hover:text-white cursor-pointer" />
+        <MoreHorizontal className="w-6 h-6 md:w-8 md:h-8 text-gray-400 hover:text-white cursor-pointer" />
       </div>
 
       {/* Songs List - Desktop View */}
@@ -88,10 +88,10 @@ const AlbumPage = () => {
         <table className="w-full text-gray-300 text-sm">
           <thead>
             <tr className="border-b border-gray-800 text-gray-400">
-              <th className="px-4 py-2 text-left w-16">#</th>
-              <th className="px-4 py-2 text-left">Title</th>
-              <th className="px-4 py-2 text-left">Plays</th>
-              <th className="px-4 py-2 text-right">
+              <th className="px-2 py-2 text-left w-16">#</th>
+              <th className="px-2 py-2 text-left">Title</th>
+              <th className="px-2 py-2 text-left">Plays</th>
+              <th className="px-2 py-2 text-right">
                 <Clock3 className="w-4 h-4 inline-block" />
               </th>
             </tr>
@@ -100,10 +100,10 @@ const AlbumPage = () => {
             {albumData.songs.map((song) => (
               <tr 
                 key={song.id} 
-                className="hover:bg-white/10 group cursor-pointer"
+                className="hover:bg-white/10 group cursor-pointer border-b border-gray-800/30"
               >
-                <td className="px-4 py-3">{song.id}</td>
-                <td className="px-4 py-3">
+                <td className="px-2 py-2">{song.id}</td>
+                <td className="px-2 py-2">
                   <div className="flex items-center gap-3">
                     <img 
                       src={song.imageUrl} 
@@ -113,8 +113,8 @@ const AlbumPage = () => {
                     <span className="font-medium text-white">{song.title}</span>
                   </div>
                 </td>
-                <td className="px-4 py-3">{song.plays}</td>
-                <td className="px-4 py-3 text-right">{song.duration}</td>
+                <td className="px-2 py-2">{song.plays}</td>
+                <td className="px-2 py-2 text-right">{song.duration}</td>
               </tr>
             ))}
           </tbody>
@@ -123,26 +123,36 @@ const AlbumPage = () => {
 
       {/* Songs List - Mobile View */}
       <div className="md:hidden">
-        {albumData.songs.map((song) => (
-          <div 
-            key={song.id}
-            className="flex items-center gap-3 py-3 hover:bg-white/10 cursor-pointer border-b border-gray-800"
-          >
-            <span className="w-8 text-gray-400">{song.id}</span>
-            <img 
-              src={song.imageUrl} 
-              alt={song.title}
-              className="w-12 h-12 rounded"
-            />
-            <div className="flex-1 min-w-0">
-              <div className="flex justify-between items-start">
-                <span className="font-medium text-white truncate">{song.title}</span>
-                <span className="text-gray-400 text-sm ml-2">{song.duration}</span>
+        {/* Mobile Header */}
+        <div className="flex items-center px-2 py-2 text-xs text-gray-400 border-b border-gray-800">
+          <span className="w-8">#</span>
+          <span className="flex-1 px-2">Title</span>
+          <Clock3 className="w-4 h-4" />
+        </div>
+        
+        {/* Mobile Song List */}
+        <div className="space-y-0">
+          {albumData.songs.map((song) => (
+            <div 
+              key={song.id}
+              className="flex items-center gap-2 py-2 hover:bg-white/10 cursor-pointer border-b border-gray-800/30"
+            >
+              <span className="w-8 text-gray-400 text-xs">{song.id}</span>
+              <div className="flex-1 flex items-center gap-3 min-w-0">
+                <img 
+                  src={song.imageUrl} 
+                  alt={song.title}
+                  className="w-8 h-8 rounded"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="font-medium text-white text-sm truncate">{song.title}</div>
+                  <div className="text-xs text-gray-400">{song.plays} plays</div>
+                </div>
               </div>
-              <span className="text-xs text-gray-400 block">{song.plays} plays</span>
+              <span className="text-xs text-gray-400 pl-2">{song.duration}</span>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
