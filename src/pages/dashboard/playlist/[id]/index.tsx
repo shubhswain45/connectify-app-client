@@ -57,9 +57,9 @@ const AlbumPage = () => {
         />
         
         <div className="flex flex-col justify-end">
-          <span className="text-sm font-medium">Album</span>
-          <h1 className="text-xl md:text-6xl font-bold mb-2">{albumData.title}</h1>
-          <div className="flex items-center gap-2 text-xs md:text-sm text-gray-300">
+          <span className="text-base font-medium">Album</span>
+          <h1 className="text-2xl md:text-6xl font-bold mb-2">{albumData.title}</h1>
+          <div className="flex items-center gap-2 text-sm md:text-base text-gray-300">
             <img 
               src="/api/placeholder/40/40" 
               alt="Artist" 
@@ -85,7 +85,7 @@ const AlbumPage = () => {
 
       {/* Songs List - Desktop View */}
       <div className="hidden md:block">
-        <table className="w-full text-gray-300 text-sm">
+        <table className="w-full text-gray-300 text-base">
           <thead>
             <tr className="border-b border-gray-800 text-gray-400">
               <th className="px-2 py-2 text-left w-16">#</th>
@@ -124,7 +124,7 @@ const AlbumPage = () => {
       {/* Songs List - Mobile View */}
       <div className="md:hidden">
         {/* Mobile Header */}
-        <div className="flex items-center px-2 py-2 text-xs text-gray-400 border-b border-gray-800">
+        <div className="flex items-center px-2 py-2 text-sm text-gray-400 border-b border-gray-800">
           <span className="w-8">#</span>
           <span className="flex-1 px-2">Title</span>
           <Clock3 className="w-4 h-4" />
@@ -137,7 +137,7 @@ const AlbumPage = () => {
               key={song.id}
               className="flex items-center gap-2 py-2 hover:bg-white/10 cursor-pointer border-b border-gray-800/30"
             >
-              <span className="w-8 text-gray-400 text-xs">{song.id}</span>
+              <span className="w-8 text-gray-400 text-sm">{song.id}</span>
               <div className="flex-1 flex items-center gap-3 min-w-0">
                 <img 
                   src={song.imageUrl} 
@@ -145,11 +145,11 @@ const AlbumPage = () => {
                   className="w-8 h-8 rounded"
                 />
                 <div className="flex-1 min-w-0">
-                  <div className="font-medium text-white text-sm truncate">{song.title}</div>
-                  <div className="text-xs text-gray-400">{song.plays} plays</div>
+                  <div className="font-medium text-white text-base truncate">{song.title}</div>
+                  <div className="text-sm text-gray-400">{song.plays} plays</div>
                 </div>
               </div>
-              <span className="text-xs text-gray-400 pl-2">{song.duration}</span>
+              <span className="text-sm text-gray-400 pl-2">{song.duration}</span>
             </div>
           ))}
         </div>
