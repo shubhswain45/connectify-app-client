@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-    X, Share2, Plus, Heart, User2, Info, 
+    X, Share2, Plus, Heart, Info, 
     Play, Clock, Settings, RotateCw, Timer 
 } from 'lucide-react';
 import { useTrackStore } from '@/store/useTrackStore';
