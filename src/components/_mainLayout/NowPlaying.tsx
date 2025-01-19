@@ -29,12 +29,21 @@ const NowPlaying: React.FC<NowPlayingProps> = ({
 
     // Get a random theme set (each theme set contains 4 colors for more dynamic gradients)
     const gradientThemes = [
-        ['#1a1a1a', '#2d2d2d', '#1a1a1a', '#2d2d2d'], // Charcoal
-        ['#000000', '#1f1f1f', '#000000', '#1f1f1f'], // Midnight
-        ['#161616', '#363636', '#161616', '#363636'], // Smoke
-        ['#1a1a2e', '#16213e', '#1a1a2e', '#16213e'], // Deep Ocean
-        ['#0d0d0d', '#262626', '#0d0d0d', '#262626'], // Shadow
-        ['#1f1f1f', '#2b2b2b', '#1f1f1f', '#2b2b2b']  // Graphite
+        ['#1a1a2e', '#16213e', '#1a1a2e', '#0f3460'], // Deep Ocean Night
+        ['#2c061f', '#374045', '#2c061f', '#374045'], // Wine Shadow
+        ['#1B1B3A', '#2D3047', '#1B1B3A', '#2D3047'], // Midnight Purple
+        ['#0D1B2A', '#1B263B', '#0D1B2A', '#1B263B'], // Atlantic Dark
+        ['#2B2D42', '#1A1A2E', '#2B2D42', '#1A1A2E'], // Royal Navy
+        ['#1D1D1D', '#2D3436', '#1D1D1D', '#2D3436'], // Charcoal Smoke
+        ['#2C3639', '#3F4E4F', '#2C3639', '#3F4E4F'], // Forest Night
+        ['#252B48', '#445069', '#252B48', '#445069'], // Stormy Blue
+        ['#1F1D36', '#3F3351', '#1F1D36', '#3F3351'], // Deep Purple
+        ['#2C3333', '#395B64', '#2C3333', '#395B64'], // Ocean Depth
+        ['#222831', '#30475E', '#222831', '#30475E'], // Midnight Steel
+        ['#25283D', '#3C4F65', '#25283D', '#3C4F65'], // Dark Slate
+        ['#1B262C', '#2C394B', '#1B262C', '#2C394B'], // Navy Shadow
+        ['#241E38', '#392F5A', '#241E38', '#392F5A'], // Royal Night
+        ['#1A374D', '#2C5364', '#1A374D', '#2C5364']  // Deep Teal
     ];
 
     useEffect(() => {
