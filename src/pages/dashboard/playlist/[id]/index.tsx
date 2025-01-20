@@ -21,26 +21,26 @@ const PlaylistPage = () => {
       {/* Mobile Layout (sm) */}
       <div className="md:hidden p-0">
         <div className="flex flex-col items-center">
-          {/* Image */}
+          {/* Image - Increased size */}
           <img
             src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXA1xoHjwgaUQRbR2ijwtqLkVNU4xcJ0Rndg&s"}
             alt="Playlist Cover"
-            className="w-60 h-60 shadow-lg mb-6 object-cover"
+            className="w-72 h-72 shadow-lg mb-6 object-cover"
           />
           
-          {/* Title and Creator */}
+          {/* Title and Creator - Reduced title size */}
           <div className="text-left w-full mb-4">
-            <h1 className="text-2xl font-bold">{playlist.name}</h1>
+            <h1 className="text-lg font-bold">{playlist.name}</h1>
             <p className="text-gray-300 text-sm mt-1">{playlist.creator}</p>
           </div>
 
-          {/* Icons and Play Button */}
+          {/* Icons and Play Button - Reduced more icon size */}
           <div className="flex items-center justify-between w-full mb-6">
             <div className="flex items-center space-x-4">
               <Heart className="w-6 h-6 text-gray-400 hover:text-white cursor-pointer" />
               <Share2 className="w-6 h-6 text-gray-400 hover:text-white cursor-pointer" />
               <Download className="w-6 h-6 text-gray-400 hover:text-white cursor-pointer" />
-              <MoreHorizontal className="w-6 h-6 text-gray-400 hover:text-white cursor-pointer" />
+              <MoreHorizontal className="w-4 h-4 text-gray-400 hover:text-white cursor-pointer" />
             </div>
             <button className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-400 transition">
               <Play className="w-6 h-6 text-black" fill="black" />
@@ -56,11 +56,11 @@ const PlaylistPage = () => {
           <img
             src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXA1xoHjwgaUQRbR2ijwtqLkVNU4xcJ0Rndg&s"}
             alt="Playlist Cover"
-            className="w-60 h-60 shadow-lg"
+            className="w-72 h-72 shadow-lg"
           />
           <div className="flex-1">
             <p className="text-sm uppercase mb-2">Playlist</p>
-            <h1 className="text-5xl font-bold mb-6">{playlist.name}</h1>
+            <h1 className="text-4xl font-bold mb-6">{playlist.name}</h1>
             <div className="flex items-center text-sm text-gray-300">
               <span className="font-bold text-white">{playlist.creator}</span>
               <span className="mx-1">•</span>
@@ -77,7 +77,7 @@ const PlaylistPage = () => {
           <Heart className="w-8 h-8 text-gray-400 hover:text-white cursor-pointer" />
           <Share2 className="w-8 h-8 text-gray-400 hover:text-white cursor-pointer" />
           <Download className="w-8 h-8 text-gray-400 hover:text-white cursor-pointer" />
-          <MoreHorizontal className="w-8 h-8 text-gray-400 hover:text-white cursor-pointer" />
+          <MoreHorizontal className="w-4 h-4 text-gray-400 hover:text-white cursor-pointer" />
         </div>
       </div>
 
@@ -104,7 +104,7 @@ const PlaylistPage = () => {
                 </td>
                 <td className="py-3">
                   <div>
-                    <p className="text-white font-medium">{track.title}</p>
+                    <p className="text-white font-medium text-sm">{track.title}</p>
                     <p className="text-sm text-gray-400">{track.artist}</p>
                   </div>
                 </td>
@@ -112,7 +112,7 @@ const PlaylistPage = () => {
                   {track.duration}
                 </td>
                 <td className="py-3 w-12 text-right">
-                  <MoreHorizontal className="w-6 h-6 text-gray-400 cursor-pointer" />
+                  <MoreHorizontal className="w-4 h-4 text-gray-400 cursor-pointer" />
                 </td>
               </tr>
             ))}
