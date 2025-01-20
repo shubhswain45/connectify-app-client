@@ -135,3 +135,24 @@ body {
 .toggle-label {
   transition: all 0.3s ease-in-out;
 }
+
+/* Define the keyframe animation for a subtle fade */
+@keyframes subtleBgFade {
+  0% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: rgba(31, 41, 55, 0.5); /* Gray-800 with 50% opacity */
+  }
+}
+
+/* Class for smooth hover animation */
+.bg-hover-animate {
+  transition: all 0.3s ease-in-out; /* Smooth transition for background */
+}
+
+.bg-hover-animate:hover {
+  animation: subtleBgFade 0.3s ease-in-out forwards; /* Subtle fade animation */
+}
+
+
