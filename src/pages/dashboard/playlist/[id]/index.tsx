@@ -1,3 +1,6 @@
+import React, { useState, useEffect } from 'react';
+import { Play, MoreHorizontal, Share2, Download, Heart } from 'lucide-react';
+
 // Types and Interfaces
 interface Track {
   id: number;
@@ -20,8 +23,8 @@ interface DropdownMenuProps {
   isOpen: boolean;
 }
 
-import React, { useState } from 'react';
-import { Play, MoreHorizontal, Share2, Download, Heart } from 'lucide-react';
+// Event handler types
+type DropdownItemClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => void;
 
 const PlaylistPage: React.FC = () => {
   // Track which dropdown is currently open (if any)
@@ -46,11 +49,8 @@ const PlaylistPage: React.FC = () => {
     setOpenDropdownId(openDropdownId === id ? null : id);
   };
 
-  // Event handler types
-  type DropdownItemClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => void;
-
   // Dropdown menu component
-  const DropdownMenu: React.FC<DropdownMenuProps> = ({  isOpen }) => {
+  const DropdownMenu: React.FC<DropdownMenuProps> = ({ id, isOpen }) => {
     const handleAddToQueue: DropdownItemClickHandler = (event) => {
       event.stopPropagation();
       // Add implementation
@@ -72,46 +72,88 @@ const PlaylistPage: React.FC = () => {
     };
 
     return (
-      <div 
-        className={`
-          absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5
-          transform transition-all duration-200 ease-in-out z-50
-          ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
-        `}
-        onClick={(e: React.MouseEvent) => e.stopPropagation()}
-      >
-        <div className="py-1">
-          <button 
-            onClick={handleAddToQueue}
-            className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
-          >
-            Add to Queue
-          </button>
-          <button 
-            onClick={handleAddToPlaylist}
-            className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
-          >
-            Add to Playlist
-          </button>
-          <button 
-            onClick={handleShare}
-            className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
-          >
-            Share Song
-          </button>
-          <button 
-            onClick={handleViewArtist}
-            className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
-          >
-            View Artist
-          </button>
+      <>
+        {/* Mobile dropdown (slides up from bottom) */}
+        <div 
+          className={`
+            md:hidden fixed inset-x-0 bottom-0 bg-gray-800 rounded-t-xl shadow-lg
+            transform transition-transform duration-900 ease-in-out z-50
+            ${isOpen ? 'translate-y-0' : 'translate-y-full'}
+          `}
+          onClick={(e: React.MouseEvent) => e.stopPropagation()}
+        >
+          <div className="py-4">
+            {/* Drag indicator */}
+            <div className="w-12 h-1 bg-gray-600 rounded-full mx-auto mb-4" />
+            <button 
+              onClick={handleAddToQueue}
+              className="w-full text-left px-6 py-4 text-base text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              Add to Queue
+            </button>
+            <button 
+              onClick={handleAddToPlaylist}
+              className="w-full text-left px-6 py-4 text-base text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              Add to Playlist
+            </button>
+            <button 
+              onClick={handleShare}
+              className="w-full text-left px-6 py-4 text-base text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              Share Song
+            </button>
+            <button 
+              onClick={handleViewArtist}
+              className="w-full text-left px-6 py-4 text-base text-gray-300 hover:bg-gray-700 hover:text-white border-b border-gray-700"
+            >
+              View Artist
+            </button>
+          </div>
         </div>
-      </div>
+
+        {/* Desktop dropdown (regular dropdown) */}
+        <div 
+          className={`
+            hidden md:block absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-gray-800 
+            ring-1 ring-black ring-opacity-5 transform transition-all duration-200 ease-in-out z-50
+            ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
+          `}
+          onClick={(e: React.MouseEvent) => e.stopPropagation()}
+        >
+          <div className="py-1">
+            <button 
+              onClick={handleAddToQueue}
+              className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              Add to Queue
+            </button>
+            <button 
+              onClick={handleAddToPlaylist}
+              className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              Add to Playlist
+            </button>
+            <button 
+              onClick={handleShare}
+              className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              Share Song
+            </button>
+            <button 
+              onClick={handleViewArtist}
+              className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              View Artist
+            </button>
+          </div>
+        </div>
+      </>
     );
   };
 
   // Click outside handler
-  React.useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (!target.closest('.dropdown-container')) {
@@ -129,9 +171,9 @@ const PlaylistPage: React.FC = () => {
     <div className="min-h-screen text-white">
       {/* Mobile Layout (sm) */}
       <div className="md:hidden p-0">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center mt-5">
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXA1xoHjwgaUQRbR2ijwtqLkVNU4xcJ0Rndg&s"
+            src={"https://media2.dev.to/dynamic/image/width=1080,height=1080,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F096baapsqqt9fks0us99.png"}
             alt="Playlist Cover"
             className="w-72 h-72 shadow-lg mb-6 object-cover"
           />
@@ -168,7 +210,7 @@ const PlaylistPage: React.FC = () => {
       <div className="hidden md:block p-0">
         <div className="flex items-end space-x-6 mb-6">
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXA1xoHjwgaUQRbR2ijwtqLkVNU4xcJ0Rndg&s"
+            src={"https://media2.dev.to/dynamic/image/width=1080,height=1080,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F096baapsqqt9fks0us99.png"}
             alt="Playlist Cover"
             className="w-72 h-72 shadow-lg object-cover"
           />
@@ -219,7 +261,7 @@ const PlaylistPage: React.FC = () => {
               <tr key={track.id} className="hover:bg-white/10">
                 <td className="py-3 w-16">
                   <div className="md:hidden">
-                    <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXA1xoHjwgaUQRbR2ijwtqLkVNU4xcJ0Rndg&s"} alt={track.title} className="w-14 h-14 object-cover rounded" />
+                    <img src={"https://media2.dev.to/dynamic/image/width=1080,height=1080,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F096baapsqqt9fks0us99.png"} alt={track.title} className="w-14 h-14 object-cover rounded" />
                   </div>
                   <span className="hidden md:block text-gray-400">{index + 1}</span>
                 </td>
