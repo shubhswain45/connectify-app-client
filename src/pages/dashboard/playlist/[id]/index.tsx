@@ -50,7 +50,7 @@ const PlaylistPage: React.FC = () => {
   };
 
   // Dropdown menu component
-  const DropdownMenu: React.FC<DropdownMenuProps> = ({ id, isOpen }) => {
+  const DropdownMenu: React.FC<DropdownMenuProps> = ({isOpen }) => {
     const handleAddToQueue: DropdownItemClickHandler = (event) => {
       event.stopPropagation();
       // Add implementation
