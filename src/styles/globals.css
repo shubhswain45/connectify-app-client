@@ -137,22 +137,23 @@ body {
 }
 
 /* Define the keyframe animation for a subtle fade */
-@keyframes subtleBgFade {
+/* Keyframe animation for Spotify-style hover effect */
+@keyframes spotifyHover {
   0% {
     background-color: transparent;
+    transform: scale(1);
   }
   100% {
     background-color: rgba(31, 41, 55, 0.5); /* Gray-800 with 50% opacity */
+    transform: scale(1.02); /* Slightly enlarge for emphasis */
   }
 }
 
-/* Class for smooth hover animation */
-.bg-hover-animate {
-  transition: all 0.3s ease-in-out; /* Smooth transition for background */
+/* Hover effect with animation */
+.bg-hover-spotify {
+  transition: all 0.3s ease-in-out; /* Smooth transitions for all properties */
 }
 
-.bg-hover-animate:hover {
-  animation: subtleBgFade 0.3s ease-in-out forwards; /* Subtle fade animation */
+.bg-hover-spotify:hover {
+  animation: spotifyHover 0.3s ease-in-out forwards; /* Play Spotify-style animation */
 }
-
-
