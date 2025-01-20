@@ -34,7 +34,7 @@ const MoreMenu: React.FC<MoreMenuProps> = ({ isOpen, setIsOpen }) => {
     ];
 
     return (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm">
             <div className="h-full w-full flex flex-col p-4 sm:p-6 overflow-y-auto">
                 {/* Header */}
                 <div className="flex justify-end mb-6 sm:mb-8">
