@@ -109,7 +109,7 @@ const SpotifyPlaylist = () => {
 
       {/* Mobile List */}
       <div className="md:hidden">
-  {songs.map((song, index) => (
+  {songs.map((song) => (
     <div
       key={song.id}
       className="flex items-center gap-3 p-3 hover:bg-gray-800/50 transition duration-300 ease-in-out hover:rounded-lg"
