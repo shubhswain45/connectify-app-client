@@ -112,7 +112,7 @@ const SpotifyPlaylist = () => {
         {songs.map((song) => (
           <div
             key={song.id}
-            className="flex items-center gap-3 p-3 bg-hover-spotify rounded-lg"
+            className="flex items-center gap-3 p-3 bg-hover-animate rounded-lg"
           >
             <img
               src="https://cdn.vox-cdn.com/thumbor/J1CL5bMzlkZAwj9vEdFtqsAewTA=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/25564546/sethrollins.jpg"
@@ -129,13 +129,6 @@ const SpotifyPlaylist = () => {
           </div>
         ))}
       </div>
-
-
-
-
-
-
-
     </div>
   );
 };
