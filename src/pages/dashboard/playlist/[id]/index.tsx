@@ -1,5 +1,5 @@
-import React from 'react';
-import { Play, Clock, MoreHorizontal, Heart, Download, Share2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Play, Clock, MoreHorizontal, Heart, Download, Share2, X } from 'lucide-react';
 
 const SpotifyPlaylist = () => {
   const songs = [
@@ -8,6 +8,8 @@ const SpotifyPlaylist = () => {
     { id: 3, title: "Hotel California", artist: "Eagles", duration: "6:30" },
     { id: 4, title: "Stairway to Heaven", artist: "Led Zeppelin", duration: "8:02" },
   ];
+
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   return (
     <div className=" min-h-screen text-white p-0">
@@ -108,7 +110,7 @@ const SpotifyPlaylist = () => {
       </div>
 
       {/* Mobile List */}
-      <div className="md:hidden">
+      <div className="md:hidden -mt-3">
         {songs.map((song) => (
           <div
             key={song.id}
@@ -123,12 +125,39 @@ const SpotifyPlaylist = () => {
               <div className="font-medium">{song.title}</div>
               <div className="text-sm text-gray-400">{song.artist}</div>
             </div>
-            <button className="p-2">
+            <button className="p-2" onClick={() => setShowMobileMenu(true)}>
               <MoreHorizontal className="w-5 h-5" />
             </button>
           </div>
         ))}
       </div>
+
+      {/* Full Screen Mobile Menu */}
+      {showMobileMenu && (
+        <>
+          <div className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50" />
+          <div className="md:hidden fixed inset-0 z-50">
+            <div className="relative h-full">
+              <div className="flex justify-between items-center p-4 border-b border-gray-800">
+                <h2 className="text-lg font-semibold">Song Options</h2>
+                <button 
+                  onClick={() => {
+                    setShowMobileMenu(false);
+                    // setSelectedSongId(null);
+                  }}
+                  className="p-2"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              {/* <MenuItems 
+                song={songs.find(s => s.id === selectedSongId)}
+              /> */}
+            </div>
+          </div>
+        </>
+      )}
+
     </div>
   );
 };
