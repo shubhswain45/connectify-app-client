@@ -13,9 +13,9 @@ const SpotifyPlaylist = () => {
     <div className=" min-h-screen text-white p-0">
       {/* Desktop Header */}
       <div className="hidden md:flex items-start gap-8 mb-8">
-        <img 
+        <img
           src="https://cdn.vox-cdn.com/thumbor/J1CL5bMzlkZAwj9vEdFtqsAewTA=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/25564546/sethrollins.jpg"
-          alt="Playlist Cover" 
+          alt="Playlist Cover"
           className="w-64 h-64 shadow-2xl"
         />
         <div className="flex flex-col justify-end h-64">
@@ -37,9 +37,9 @@ const SpotifyPlaylist = () => {
 
       {/* Mobile Header */}
       <div className="md:hidden flex flex-col items-center mb-6">
-        <img 
+        <img
           src="https://cdn.vox-cdn.com/thumbor/J1CL5bMzlkZAwj9vEdFtqsAewTA=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/25564546/sethrollins.jpg"
-          alt="Playlist Cover" 
+          alt="Playlist Cover"
           className="w-48 h-48 shadow-2xl mb-4"
         />
         <h1 className="text-3xl font-bold mb-2">Rock Classics</h1>
@@ -82,7 +82,7 @@ const SpotifyPlaylist = () => {
                 <td className="py-3">{index + 1}</td>
                 <td className="py-3">
                   <div className="flex items-center gap-3">
-                    <img 
+                    <img
                       src="https://cdn.vox-cdn.com/thumbor/J1CL5bMzlkZAwj9vEdFtqsAewTA=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/25564546/sethrollins.jpg"
                       alt={song.title}
                       className="w-10 h-10"
@@ -109,26 +109,26 @@ const SpotifyPlaylist = () => {
 
       {/* Mobile List */}
       <div className="md:hidden">
-  {songs.map((song, index) => (
-    <div
-      key={song.id}
-      className="flex items-center gap-3 p-3 bg-transparent hover:bg-gray-800/50 hover:scale-105 hover:shadow-md transition-all duration-300 ease-out rounded-lg"
-    >
-      <img
-        src="https://cdn.vox-cdn.com/thumbor/J1CL5bMzlkZAwj9vEdFtqsAewTA=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/25564546/sethrollins.jpg"
-        alt={song.title}
-        className="w-12 h-12"
-      />
-      <div className="flex-grow">
-        <div className="font-medium">{song.title}</div>
-        <div className="text-sm text-gray-400">{song.artist}</div>
+        {songs.map((song) => (
+          <div
+            key={song.id}
+            className="flex items-center gap-3 p-3 bg-transparent hover:bg-gray-800/50 hover:scale-105 hover:shadow-md transition-all duration-300 ease-out rounded-lg"
+          >
+            <img
+              src="https://cdn.vox-cdn.com/thumbor/J1CL5bMzlkZAwj9vEdFtqsAewTA=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/25564546/sethrollins.jpg"
+              alt={song.title}
+              className="w-12 h-12"
+            />
+            <div className="flex-grow">
+              <div className="font-medium">{song.title}</div>
+              <div className="text-sm text-gray-400">{song.artist}</div>
+            </div>
+            <button className="p-2">
+              <MoreHorizontal className="w-5 h-5" />
+            </button>
+          </div>
+        ))}
       </div>
-      <button className="p-2">
-        <MoreHorizontal className="w-5 h-5" />
-      </button>
-    </div>
-  ))}
-</div>
 
 
     </div>
