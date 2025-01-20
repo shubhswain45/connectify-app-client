@@ -8,6 +8,7 @@ function MobileMiniPlayer() {
     const [duration, setDuration] = useState("0:00");
     const { trackDetails, setTrackDetails, togglePlay } = useTrackStore();
     const [currentTime, setCurrentTime] = useState("0:00")
+    const [volume, setVolume] = useState(0.5)
 
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -48,6 +49,24 @@ function MobileMiniPlayer() {
 
         // Update audio time
         audio.currentTime = newTime;
+    };
+
+    const handleVolumeChange = (event: React.MouseEvent<HTMLDivElement>) => {
+        const slider = event.currentTarget;
+        const rect = slider.getBoundingClientRect();
+        const clickPosition = event.clientX - rect.left;
+        const newVolume = clickPosition / rect.width;
+    
+        // Ensure volume stays within the bounds of 0 to 1
+        const boundedVolume = Math.max(0, Math.min(1, newVolume));
+    
+        // Update the audio volume
+        if (audioRef.current) {
+            audioRef.current.volume = boundedVolume;
+        }
+    
+        // Update the state
+        setVolume(boundedVolume);
     };
 
     useEffect(() => {
@@ -186,10 +205,10 @@ function MobileMiniPlayer() {
                 )
             }
 
-            <NowPlaying isPlayerOpen={isPlayerOpen} togglePlayer={togglePlayer} currentTime={currentTime} duration={duration} progress={progress} handleSeek={handleSeek} handleSkip={handleSkip}/>
+            <NowPlaying isPlayerOpen={isPlayerOpen} togglePlayer={togglePlayer} currentTime={currentTime} duration={duration} progress={progress} handleSeek={handleSeek} handleSkip={handleSkip} volume={volume} handleVolumeChange={handleVolumeChange} />
 
         </>
     )
-}
+}  
 
 export default MobileMiniPlayer;

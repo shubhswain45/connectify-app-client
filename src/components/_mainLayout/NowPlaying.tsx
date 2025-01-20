@@ -12,6 +12,8 @@ interface NowPlayingProps {
     progress: number;
     handleSeek: (event: React.MouseEvent<HTMLDivElement>) => void;
     handleSkip: (direction: 'forward' | 'backward') => void
+    volume: number;
+    handleVolumeChange: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const NowPlaying: React.FC<NowPlayingProps> = ({
@@ -21,7 +23,9 @@ const NowPlaying: React.FC<NowPlayingProps> = ({
     duration,
     progress,
     handleSeek,
-    handleSkip
+    handleSkip,
+    volume,
+    handleVolumeChange
 }) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const [theme, setTheme] = useState<string[]>([])
@@ -98,11 +102,11 @@ const NowPlaying: React.FC<NowPlayingProps> = ({
                                 onClick={togglePlayer}
                                 className="p-2 hover:bg-transparent rounded-full transition-colors bg-transparent"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                             </button>
                             <h2 className="text-white text-sm font-bold">Now Playing</h2>
                             <button className="p-2 hover:bg-transparent rounded-full transition-colors bg-transparent" onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
-                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg>
                             </button>
                         </div>
                         <div className="aspect-square w-full max-w-[400px] mx-auto mb-6">
@@ -202,21 +206,26 @@ const NowPlaying: React.FC<NowPlayingProps> = ({
 
                             {/* Volume Control */}
                             <div className="flex items-center gap-2 w-full max-w-md">
-                                <SvgIcon name='Volume' />
-
-                                <div className="flex-1 h-1 bg-gray-800 rounded-full">
-                                    <div className="w-1/2 h-full bg-white hover:bg-green-500 rounded-full cursor-pointer"></div>
+                                <SvgIcon name="Volume" />
+                                <div
+                                    className="flex-1 h-1 bg-gray-800 rounded-full relative cursor-pointer"
+                                    onClick={handleVolumeChange} // Pass the function here
+                                >
+                                    <div
+                                        className="h-full bg-white hover:bg-green-500 rounded-full"
+                                        style={{ width: `${volume * 100}%` }} // Visual indicator of volume
+                                    />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <MoreMenu isOpen={isDrawerOpen} setIsOpen={setIsDrawerOpen}/>
-                
+                <MoreMenu isOpen={isDrawerOpen} setIsOpen={setIsDrawerOpen} />
+
 
                 {/* Backdrop overlay when drawer is open */}
-                
+
 
             </div>
         </>
